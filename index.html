@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Чат</title>
+        <script language="JavaScript">
+            window.onload = function(){
+                var inp_message = document.querySelector('input[name=message_inp]');
+                document.querySelector('#go').onclick = function() {
+                var params = 'message=' + inp_message.value;
+                ajaxPost(params, "cgi-bin/message_input.py");
+                }
+            }
+            function ajaxPost(params, action){
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", action, true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send(params);
+            xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+            output = xhr.responseText;
+            console.log(output);
+            }
+            }
+            }
+            function ajaxPost_2(params, action){
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", action, true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send(params);
+            xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+            output = xhr.responseText;
+            console.log(output);
+            document.querySelector('#text_holder').innerHTML = output;
+            }
+            }
+            }
+            window.setInterval(function(){
+                var id_message = document.querySelector('p:first-child');
+                var params = 'id=' + id_message.id;
+                builder = ajaxPost_2(params, "cgi-bin/message_output.py");
+                console.log(builder);
+                //document.querySelector('#text_holder').innerHTML = builder;
+
+
+
+
+            }
+            ,1000);
+        </script>
+    </head>
+    <body>
+    <style>
+        .input_message{
+        margin: auto;
+        width: 300px;
+        }
+        #text_holder{
+        margin-top: 10%;
+        height: 50%;
+        overflow: auto;
+        margin:auto;
+        width: 300px;
+        }
+    </style>
+    <div>
+        <div id="text_holder">
+            <p id="0">Чат пуст</p>
+        </div>
+        <div class="input_message">
+            <form>
+                <input name="message_inp" type="text" placeholder="Сообщение">
+                <input id="go" type="button" value="отправить">
+            </form>
+        </div>
+    </div>
+    <div class="popup">
+        <form>
+            <input placeholder="nick" name="nick" type="text">
+            <input type="button" id="enter" value="войти">
+        </form>
+    </div>
+    </body>
+</html>
