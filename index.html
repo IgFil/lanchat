@@ -19,12 +19,6 @@
             xhr.open("POST", action, true);
             xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xhr.send(params);
-            xhr.onreadystatechange = function(){
-            if(xhr.readyState == 4 && xhr.status == 200){
-            output = xhr.responseText;
-            console.log(output);
-            }
-            }
             }
             function ajaxPost_2(params, action){
             var xhr = new XMLHttpRequest();

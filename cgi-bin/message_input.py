@@ -2,6 +2,7 @@
 import cgi
 import sqlite3
 from time import gmtime, strftime
+
 time = strftime("%H:%M:%S", gmtime())
 name = "host"
 form = cgi.FieldStorage()

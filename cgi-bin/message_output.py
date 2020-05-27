@@ -5,7 +5,7 @@ form = cgi.FieldStorage()
 id = form.getfirst("id")
 conn = sqlite3.connect("chat_database.db")
 cursor = conn.cursor()
-messages = cursor.execute("SELECT * FROM chat WHERE id > ?", (id, ))
+messages = cursor.execute("SELECT * FROM chat")
 conn.commit()
 print("Content-type: text/html\n")
 if messages != "":
