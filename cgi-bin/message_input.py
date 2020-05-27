@@ -8,6 +8,7 @@ name = "host"
 form = cgi.FieldStorage()
 message = form.getfirst("message")
 conn = sqlite3.connect("chat_database.db")
+conn.text_factory = str
 cursor = conn.cursor()
 cursor.execute("INSERT INTO chat (title, text_message, time) VALUES (?,?,?)", (name, message, time))
 conn.commit()

@@ -6,8 +6,12 @@
             window.onload = function(){
                 var inp_message = document.querySelector('input[name=message_inp]');
                 document.querySelector('#go').onclick = function() {
+                if (inp_message.value == ""){
+
+                }else{
                 var params = 'message=' + inp_message.value;
                 ajaxPost(params, "cgi-bin/message_input.py");
+                }
                 }
                 console.log(document.cookie);
                 if (document.cookie !== ""){
