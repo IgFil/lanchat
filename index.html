@@ -9,8 +9,10 @@
                 if (inp_message.value == ""){
 
                 }else{
-                var params = 'message=' + inp_message.value;
-                ajaxPost(params, "cgi-bin/message_input.py");
+
+                if (inp_message.value.length <= 30) {
+                    var params = 'message=' + inp_message.value;
+                ajaxPost(params, "cgi-bin/message_input.py");}
                 }
                 }
                 console.log(document.cookie);
@@ -57,11 +59,11 @@
         width: 300px;
         }
         #text_holder{
-        margin-top: 10%;
+        margin-top: 20%;
         height: 50%;
         overflow: auto;
         margin:auto;
-        width: 300px;
+        width: 500px;
         }
     </style>
     <div>

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import cgi
 import sqlite3
-from time import gmtime, strftime
+from time import localtime, strftime
 
-time = strftime("%H:%M:%S", gmtime())
+time = strftime("%H:%M:%S", localtime())
 name = "host"
 form = cgi.FieldStorage()
 message = form.getfirst("message")
