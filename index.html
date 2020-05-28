@@ -5,13 +5,21 @@
         <script language="JavaScript">
             window.onload = function(){
                 var inp_message = document.querySelector('input[name=message_inp]');
+                document.querySelector('#enter').onclick = function(){
+                if (document.querySelector('#nick').value == ""){
+                }else{
+                    if(document.querySelector('#nick').value,length <= 10){
+                    document.cookie = "name=" + document.querySelector('#nick').value;
+                    window.location.reload();}}
+
+                }
                 document.querySelector('#go').onclick = function() {
                 if (inp_message.value == ""){
 
                 }else{
 
                 if (inp_message.value.length <= 30) {
-                    var params = 'message=' + inp_message.value;
+                    var params = 'message=' + inp_message.value + '&' + document.cookie;
                 ajaxPost(params, "cgi-bin/message_input.py");}
                 }
                 }
@@ -65,6 +73,37 @@
         margin:auto;
         width: 500px;
         }
+        #popup{
+        z-index: 1;
+        position: absolute;
+        margin: auto;
+        width: 100%;
+        height: 30%;
+        top: 0%;
+        padding-top:10%;
+        padding-left:40%;
+        padding-bottom:70%;
+        padding-right:60%;
+
+        background-color: maroon;
+        }
+        #nick{
+        border-radius: 3px;
+        border-style: solid;
+        width:20%;
+        height:30%;
+        }
+        #enter{
+        height:30%;
+        border-radius: 3px;
+        border-style: solid;
+        width:10%;
+        }
+        #register_l{
+        font-size: 30px;
+        font-weight: bold;
+        color: blue;
+        }
     </style>
     <div>
         <div id="text_holder">
@@ -73,14 +112,16 @@
         <div class="input_message">
             <form>
                 <input name="message_inp" type="text" placeholder="Сообщение">
-                <input id="go" type="button" value="отправить">
+                <input type="button" id="go" value="отправить">
             </form>
         </div>
     </div>
     <div id="popup">
         <form>
-            <input placeholder="nick" name="nick" type="text">
-            <input type="button" id="enter" value="войти">
+            <label id="register_l" >Регистрация</label>
+            <br>
+            <input id="nick" required placeholder="nick" name="nick" type="text">
+            <input type="button"  id="enter" value="войти">
         </form>
     </div>
     </body>

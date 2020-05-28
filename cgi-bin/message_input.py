@@ -4,9 +4,10 @@ import sqlite3
 from time import localtime, strftime
 
 time = strftime("%H:%M:%S", localtime())
-name = "host"
+
 form = cgi.FieldStorage()
 message = form.getfirst("message")
+name = form.getfirst("name")
 conn = sqlite3.connect("chat_database.db")
 conn.text_factory = str
 cursor = conn.cursor()
