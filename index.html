@@ -51,6 +51,7 @@
                 var id_message = document.querySelector('p:first-child');
                 var params = 'id=' + id_message.id;
                 ajaxPost_2(params, "cgi-bin/message_output.py");
+                document.querySelector('#text_holder').scrollTop = 99999999;
 
 
 
@@ -62,16 +63,22 @@
     </head>
     <body>
     <style>
+        body{ background-image: url(field_image_istock-516189065.jpg) }
         .input_message{
         margin: auto;
-        width: 300px;
+        margin-top: 1%;
+        margin-left: 35%;
+        width: 100%;
         }
         #text_holder{
-        margin-top: 20%;
+        padding: 20px;
         height: 50%;
         overflow: auto;
         margin:auto;
         width: 500px;
+        background-color: black;
+        color:white;
+        border-radius: 10px;
         }
         #popup{
         z-index: 1;
@@ -92,8 +99,21 @@
         border-style: solid;
         width:20%;
         height:30%;
+        font-size: 40px;
         }
-        #enter{
+        #enter{  border-radius: 5px;
+        border: none;
+        outline: none;
+        background: rgb(212,75,56);
+        padding: .7em 1.5em;
+        text-decoration: none;
+        font-size: 20px;
+        color: #fff;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 1%;
+        width:10%;
+        height: 10%;
         height:30%;
         border-radius: 3px;
         border-style: solid;
@@ -102,16 +122,83 @@
         #register_l{
         font-size: 30px;
         font-weight: bold;
-        color: blue;
+        color: green;
+        }
+        #mess{
+        display: inline-block;
+        width:20%;
+        height:10%;
+        }
+        #go{
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background: rgb(212,75,56);
+        padding: .7em 1.5em;
+        text-decoration: none;
+        font-size: 20px;
+        color: #fff;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 1%;
+        width:10%;
+        height: 10%;
+        }
+        #go:hover{
+        background: rgb(232,95,76);
+        }
+        #go:active{
+        background: rgb(152,15,0);
+        }
+        .message{
+        }
+        #main{
+        margin-top: 5%;
+
+        }
+        @media screen and ( max-width: 1280px ){
+        #go{
+        width: 30%;
+        font-size: 40px;
+
+        }
+        #mess{
+        width: 63%;
+        margin-left: 5%;
+        font-size: 40px;
+
+        }
+        .input_message{
+        margin-left: 0%;
+
+        }
+        #text_holder{
+        width:90%;
+        height:80%;
+        }
+        #popup{
+        margin-left:0%;
+
+        padding-left: 5%;
+        padding-right: 90%;
+        padding-bottom: 90%;
+        }
+        #enter{
+        width: 30%;
+        }
+        #nick{
+        width: 50%;
+        font-size:40px;
+        }
         }
     </style>
-    <div>
+    <div id="main">
         <div id="text_holder">
             <p id="0">Чат пуст</p>
         </div>
         <div class="input_message">
             <form>
-                <input name="message_inp" type="text" placeholder="Сообщение">
+                <textarea name="message_inp" id="mess" placeholder="Сообщение"></textarea>
                 <input type="button" id="go" value="отправить">
             </form>
         </div>
@@ -120,6 +207,8 @@
         <form>
             <label id="register_l" >Регистрация</label>
             <br>
+            <br>
+
             <input id="nick" required placeholder="nick" name="nick" type="text">
             <input type="button"  id="enter" value="войти">
         </form>
