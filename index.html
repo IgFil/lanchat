@@ -4,6 +4,10 @@
         <title>Чат</title>
         <script language="JavaScript">
             window.onload = function(){
+                document.querySelector('#down').onclick = function(){
+                    document.querySelector('#text_holder').scrollTop = 9999;
+
+                }
                 var inp_message = document.querySelector('#mess');
                 document.querySelector('#enter').onclick = function(){
                 if (document.querySelector('#nick').value == ""){
@@ -51,7 +55,7 @@
                 var id_message = document.querySelector('p:first-child');
                 var params = 'id=' + id_message.id;
                 ajaxPost_2(params, "cgi-bin/message_output.py");
-                document.querySelector('#text_holder').scrollTop = 99999999;
+                
 
 
 
@@ -81,7 +85,7 @@
         border-radius: 10px;
         }
         #popup{
-        z-index: 1;
+        z-index: 2;
         position: absolute;
         margin: auto;
         width: 100%;
@@ -156,6 +160,23 @@
         margin-top: 5%;
 
         }
+        #down{
+            position: absolute;
+            top:58%;
+            z-index: 1;
+            margin-left: 61%;
+            width: 3%;
+            height: 6%;
+            font-size: 40px;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            
+        }
+        #down:hover{
+            background: #00D5FE;
+        }
+        
         @media screen and ( max-width: 1280px ){
         #go{
         width: 30%;
@@ -186,6 +207,15 @@
         #enter{
         width: 30%;
         }
+        #down{
+        top: 78%;
+        margin-left:83%;
+        width: 9%;
+        
+            }
+            .message{
+                font-size: 30px;
+            }
         #nick{
         width: 50%;
         font-size:40px;
@@ -196,12 +226,14 @@
         <div id="text_holder">
             <p id="0">Чат пуст</p>
         </div>
+        <input type="button" value="▼" id="down">
         <div class="input_message">
             <form>
                 <textarea name="message_inp" id="mess" placeholder="Сообщение"></textarea>
                 <input type="button" id="go" value="отправить">
             </form>
         </div>
+        
     </div>
     <div id="popup">
         <form>

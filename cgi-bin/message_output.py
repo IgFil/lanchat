@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import cgi
 import sqlite3
 form = cgi.FieldStorage()
@@ -10,8 +11,7 @@ conn.commit()
 print("Content-type: text/html\n")
 if messages != "":
     for message in messages:
-        #print("<p id="+str(message[0])+">"+str(message[1])+" {} "+str(message[2])+"</p>")
-        print('<p class = "message"  id='+str(message[0])+'>'+message[1]+' || ' + message[2] + ' || ' + str(message[3]) + '</p>')
+        print('<p class = "message" id='+str(message[0])+'>'+message[1]+' || ' + message[2] + ' || ' + message[3] + '</p>')
 
 
 
