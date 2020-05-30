@@ -5,14 +5,14 @@
         <script language="JavaScript">
             window.onload = function(){
                 document.querySelector('#down').onclick = function(){
-                    document.querySelector('#text_holder').scrollTop = 9999;
+                    document.querySelector('#text_holder').scrollTop = 9999999999999999;
 
                 }
                 var inp_message = document.querySelector('#mess');
                 document.querySelector('#enter').onclick = function(){
                 if (document.querySelector('#nick').value == ""){
                 }else{
-                    if(document.querySelector('#nick').value,length <= 10){
+                    if(document.querySelector('#nick').value.length <= 10){
                     document.cookie = "name=" + document.querySelector('#nick').value;
                     window.location.reload();}}
 
@@ -22,9 +22,10 @@
 
                 }else{
 
-                if (inp_message.value.length <= 30) {
+                if (inp_message.value.length <= 500) {
                     var params = 'message=' + inp_message.value + '&' + document.cookie;
                 ajaxPost(params, "cgi-bin/message_input.py");}
+                    document.querySelector('#mess').textContent = "";
                 }
                 }
                 console.log(document.cookie);
