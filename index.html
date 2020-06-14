@@ -26,6 +26,8 @@
                     var params = 'message=' + inp_message.value + '&' + document.cookie;
                 ajaxPost(params, "cgi-bin/message_input.py");}
                     document.querySelector('#mess').textContent = "";
+
+                    
                 }
                 }
                 console.log(document.cookie);
@@ -57,7 +59,6 @@
                 var params = 'id=' + id_message.id;
                 ajaxPost_2(params, "cgi-bin/message_output.py");
                 
-
 
 
 

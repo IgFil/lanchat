@@ -1,5 +1,6 @@
 from http.server import HTTPServer, CGIHTTPRequestHandler
 import sqlite3
+import socket
 
 try:
     conn = sqlite3.connect("chat_database.db")
@@ -20,6 +21,10 @@ finally:
         cursor.execute("INSERT INTO chat (title, text_message, time) VALUES (?,?,?)", (name, message, time))
         conn.commit()
     finally:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        print(s.getsockname()[0])
+        s.close()
         SERVER_ADDRES = ("", 5555)
         httpd = HTTPServer(SERVER_ADDRES, CGIHTTPRequestHandler)
         httpd.serve_forever()
