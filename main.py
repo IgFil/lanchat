@@ -21,10 +21,6 @@ finally:
         cursor.execute("INSERT INTO chat (title, text_message, time) VALUES (?,?,?)", (name, message, time))
         conn.commit()
     finally:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))
-        print(s.getsockname()[0])
-        s.close()
         SERVER_ADDRES = ("", 5555)
         httpd = HTTPServer(SERVER_ADDRES, CGIHTTPRequestHandler)
         httpd.serve_forever()
