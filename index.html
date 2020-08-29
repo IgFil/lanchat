@@ -29,9 +29,9 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "cgi-bin/message_input.py");
                 xhr.send(data);
-                img_inp.value = '';
-                img_inp.type = '';
-                img_inp.type = 'file';
+                img_inp.value = "";
+                img_inp.type = "";
+                img_inp.type = "file";
               }
             }
             if (inp_message.value.length <= 500) {
@@ -193,12 +193,13 @@
 
       @media screen and (max-width: 1280px) {
         #go {
-          width: 30%;
-          font-size: 40px;
+          width: 10%;
+          font-size: 14px;
+          padding: 0 !important;
         }
         #mess {
           width: 63%;
-          margin-left: 5%;
+
           font-size: 40px;
         }
         .input_message {
@@ -229,6 +230,9 @@
         #nick {
           width: 50%;
           font-size: 40px;
+        }
+        .input_img .label {
+          padding: 0 !important;
         }
       }
       .input_img .form-group {
