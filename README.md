@@ -8,3 +8,5 @@ python main.py
 
 run for windows
 python main.py
+
+connect "your local ip : 5555"
