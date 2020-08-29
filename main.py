@@ -2,6 +2,7 @@ from http.server import HTTPServer, CGIHTTPRequestHandler
 import sqlite3
 import socket
 
+
 try:
     conn = sqlite3.connect("chat_database.db")
     cursor = conn.cursor()
