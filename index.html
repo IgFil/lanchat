@@ -29,6 +29,9 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "cgi-bin/message_input.py");
                 xhr.send(data);
+                img_inp.value = '';
+                img_inp.type = '';
+                img_inp.type = 'file';
               }
             }
             if (inp_message.value.length <= 500) {
