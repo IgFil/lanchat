@@ -40,6 +40,7 @@
               ajaxPost(params, "cgi-bin/message_input.py");
             }
             document.querySelector("#mess").textContent = "";
+            document.getElementById("mess").value = "";
           }
         };
         console.log(document.cookie);
