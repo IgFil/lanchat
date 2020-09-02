@@ -82,4 +82,4 @@ if __name__ == "__main__":
         cursor.execute(
             "INSERT INTO chat (title, text_message, time) VALUES (?,?,?)", (name, message, time))
         conn.commit()
-        app.run(debug=True)
+        app.run(host="0.0.0.0", port="5555")
