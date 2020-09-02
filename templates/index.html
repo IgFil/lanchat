@@ -1,0 +1,323 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Чат</title>
+    <script language="JavaScript">
+      window.onload = function () {
+        document.querySelector("#down").onclick = function () {
+          document.querySelector("#text_holder").scrollTop = 9999999999999999;
+        };
+        var inp_message = document.querySelector("#mess");
+        document.querySelector("#enter").onclick = function () {
+          if (document.querySelector("#nick").value == "") {
+          } else {
+            if (document.querySelector("#nick").value.length <= 10) {
+              document.cookie = "name=" + document.querySelector("#nick").value;
+              window.location.reload();
+            }
+          }
+        };
+        document.querySelector("#go").onclick = function () {
+          if (inp_message.value == "") {
+          } else {
+            var upload_element = document.getElementById("img_inp");
+            var file = upload_element.files[0];
+            if (file != null) {
+              if (window.FormData !== undefined) {
+                var data = new FormData();
+                data.append("file_img", file);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "./");
+                xhr.send(data);
+                img_inp.value = "";
+                img_inp.type = "";
+                img_inp.type = "file";
+              }
+            }
+            if (inp_message.value.length <= 500) {
+              var params =
+                "message=" + inp_message.value + "&" + document.cookie;
+              ajaxPost(params, "./");
+            }
+            document.querySelector("#mess").textContent = "";
+            document.getElementById("mess").value = "";
+          }
+        };
+        console.log(document.cookie);
+        if (document.cookie !== "") {
+          document.querySelector("#popup").style.display = "none";
+        }
+      };
+      function ajaxPost(params, action) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", action, true);
+        xhr.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.send(params);
+      }
+      function ajaxPost_2(params, action) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", action, true);
+        xhr.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.send(params);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            output = xhr.responseText;
+            console.log(output);
+            document.querySelector("#text_holder").innerHTML = output;
+          }
+        };
+      }
+      window.setInterval(function () {
+        var id_message = document.querySelector("p:first-child");
+        var params = "id=" + id_message.id;
+        ajaxPost_2(params, "output_message.html");
+      }, 1000);
+    </script>
+  </head>
+  <body>
+    <style>
+      body {
+        background-image: url(static/field_image_istock-516189065.jpg);
+      }
+      .input_message {
+        margin: auto;
+        margin-top: 1%;
+        margin-left: 30%;
+        width: 100%;
+      }
+      #text_holder {
+        padding: 20px;
+        height: 50%;
+        overflow: auto;
+        margin: auto;
+        width: 500px;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+      }
+      #popup {
+        z-index: 2;
+        position: absolute;
+        margin: auto;
+        width: 100%;
+        height: 30%;
+        top: 0%;
+        padding-top: 10%;
+        padding-left: 40%;
+        padding-bottom: 70%;
+        padding-right: 60%;
+
+        background-color: maroon;
+      }
+      #nick {
+        border-radius: 3px;
+        border-style: solid;
+        width: 20%;
+        height: 30%;
+        font-size: 40px;
+      }
+      #enter {
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background: rgb(212, 75, 56);
+        padding: 0.7em 1.5em;
+        text-decoration: none;
+        font-size: 20px;
+        color: #fff;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 1%;
+        width: 10%;
+        height: 10%;
+        height: 30%;
+        border-radius: 3px;
+        border-style: solid;
+        width: 10%;
+      }
+      #register_l {
+        font-size: 30px;
+        font-weight: bold;
+        color: green;
+      }
+      #mess {
+        display: inline-block;
+        width: 20%;
+        height: 10%;
+      }
+      #go {
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background: rgb(212, 75, 56);
+        padding: 0.7em 1.5em;
+        text-decoration: none;
+        font-size: 20px;
+        color: #fff;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 1%;
+        width: 10%;
+        height: 10%;
+      }
+      #go:hover {
+        background: rgb(232, 95, 76);
+      }
+      #go:active {
+        background: rgb(152, 15, 0);
+      }
+
+      #main {
+        margin-top: 5%;
+      }
+      #down {
+        position: absolute;
+        top: 58%;
+        z-index: 1;
+        margin-left: 61%;
+        width: 3%;
+        height: 6%;
+        font-size: 40px;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+      }
+      #down:hover {
+        background: #00d5fe;
+      }
+
+      @media screen and (max-width: 1280px) {
+        #go {
+          width: 10%;
+          font-size: 14px;
+          padding: 0 !important;
+        }
+        #mess {
+          width: 63%;
+
+          font-size: 40px;
+        }
+        .input_message {
+          margin-left: 0%;
+        }
+        #text_holder {
+          width: 90%;
+          height: 80%;
+        }
+        #popup {
+          margin-left: 0%;
+
+          padding-left: 5%;
+          padding-right: 90%;
+          padding-bottom: 90%;
+        }
+        #enter {
+          width: 30%;
+        }
+        #down {
+          top: 78%;
+          margin-left: 83%;
+          width: 9%;
+        }
+        .message {
+          font-size: 30px;
+        }
+        #nick {
+          width: 50%;
+          font-size: 40px;
+        }
+        .input_img .label {
+          padding: 0 !important;
+        }
+      }
+      .input_img .form-group {
+        padding: 1em;
+        margin: 1em;
+      }
+      .input_img input[type="file"] {
+        width: 1px;
+        outline: 0;
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+      }
+      .input_img .label {
+        border: 2px dashed grey;
+        border-radius: 5px;
+        display: block;
+        padding: 1.2em;
+        padding-bottom: 0;
+        transition: border 300ms ease;
+        cursor: pointer;
+        text-align: center;
+      }
+      .input_img .label i {
+        display: block;
+        font-size: 30px;
+        padding-bottom: 16px;
+      }
+      .input_img .label i,
+      .input_img .label .title {
+        color: white;
+        transition: 200ms color;
+      }
+      .input_img .label:hover {
+        border: 2px solid #000;
+      }
+      .input_img .label:hover i,
+      .input_img .label:hover .title {
+        color: #000;
+      }
+
+      .input_img {
+        display: inline-block;
+        margin-right: 0;
+      }
+      .form-group {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    </style>
+    <div id="main">
+      <div id="text_holder">
+        <p id="0">Чат пуст</p>
+      </div>
+      <input type="button" value="▼" id="down" />
+      <div class="input_message">
+        <form>
+          <div class="input_img">
+            <div class="form-group">
+              <label class="label">
+                <i class="material-icons">📎</i>
+                <span class="title">Добавить файл</span>
+                <input type="file" id="img_inp" />
+              </label>
+            </div>
+          </div>
+          <textarea
+            name="message_inp"
+            id="mess"
+            placeholder="Сообщение"
+          ></textarea>
+          <input type="button" id="go" value="отправить" />
+        </form>
+      </div>
+    </div>
+    <div id="popup">
+      <form>
+        <label id="register_l">Регистрация</label>
+        <br />
+        <br />
+
+        <input id="nick" required placeholder="nick" name="nick" type="text" />
+        <input type="button" id="enter" value="войти" />
+      </form>
+    </div>
+  </body>
+</html>
